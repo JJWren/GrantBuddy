@@ -20,7 +20,7 @@ namespace EPA_Grant_Scraper.Classes
                 RestartApplication();
             }
 
-            Console.WriteLine("File path appears to be good!");
+            ConsoleColorChanger.WriteMessageInGreen("\nFile path appears to be good!");
 
 
             string downloadPath = UserPrompts.GetPathOfDownloadLocation();
@@ -53,7 +53,13 @@ namespace EPA_Grant_Scraper.Classes
             Directory.CreateDirectory(selectedDirPath);
             Directory.CreateDirectory(notSelectedDirPath);
 
-            Console.WriteLine("\nDirectories created!");
+            ConsoleColorChanger.WriteMessageInGreen("" +
+                "\nThe following directories were created:" +
+                $"\n\tParent folder:" +
+                $"\n\t\t- {parentDirPath}" +
+                $"\n\tChild folders:" +
+                $"\n\t\t- {selectedDirPath}" +
+                $"\n\t\t- {notSelectedDirPath}");
 
             return [parentDirPath, selectedDirPath, notSelectedDirPath];
         }
@@ -109,7 +115,7 @@ namespace EPA_Grant_Scraper.Classes
                 ConsoleColorChanger.WriteMessageInRedWithWhiteBackground($"\nError processing the Excel file: {ex.Message}\n");
             }
 
-            Console.WriteLine("\nProcessing of Excel file completed!");
+            ConsoleColorChanger.WriteMessageInGreen("\nProcessing of Excel file completed!");
         }
 
         /// <summary>
@@ -126,7 +132,7 @@ namespace EPA_Grant_Scraper.Classes
         private static async Task DownloadFileAsync(string url, string downloadFolderPath, EPAGranteeFile epaGranteeFile, string parentDirPath)
         {
             string year = DateTime.Now.Year.ToString();
-            string fileName = $"{year}_{SanitizeString(epaGranteeFile.State)}_{SanitizeString(epaGranteeFile.ApplicantName)}.pdf";
+            string fileName = $"{year}_{SanitizeString(epaGranteeFile.State)}_{SanitizeString(epaGranteeFile.ApplicantName)}_{SanitizeString(epaGranteeFile.TypeOfApplication)}.pdf";
 
             try
             {
@@ -163,7 +169,7 @@ namespace EPA_Grant_Scraper.Classes
                         await response.Content.CopyToAsync(fileStream);
                     }
 
-                    ConsoleColorChanger.WriteMessageInGreen($"Downloaded: {fileName}");
+                    ConsoleColorChanger.FormatAndWriteDownloadMessage(fileName);
                 }
             }
             catch (Exception ex)
@@ -194,7 +200,7 @@ namespace EPA_Grant_Scraper.Classes
 
         private static bool IsValidExcelFile(string path)
         {
-            Console.WriteLine("\nVerifying file contents...");
+            Console.WriteLine("\nVerifying the filepath contains a potentially valid Excel file...");
 
             try
             {

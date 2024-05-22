@@ -22,7 +22,7 @@
         {
             ConsoleColorChanger.WriteMessageInRedWithWhiteBackground("" +
                 "\nGrant Buddy is working on its task." +
-                "\nIf you press any key, the application will close... even before the program finishes.");
+                "\nIf you press any key, the application will close... even before the program finishes.\n");
         }
 
         public static string GetPathOfEPAFile()
@@ -63,7 +63,7 @@
         private static string PromptUserForFilePath()
         {
             ConsoleColorChanger.WriteMessageInYellow("" +
-                "\nPlease provide the filepath for where the EPA file is located.\n" +
+                "\nPlease provide the filepath for where the EPA file is located." +
                 "\nIt should look something like:");
             ConsoleColorChanger.WriteMessageInCyan("\nC:\\Users\\username\\Desktop\\All winning Grants - 2024.xlsx");
 

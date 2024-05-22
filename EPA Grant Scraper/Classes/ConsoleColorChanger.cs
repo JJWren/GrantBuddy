@@ -17,6 +17,14 @@
             Console.ResetColor();
         }
 
+        public static void FormatAndWriteDownloadMessage(string nameOfDownloadMessage)
+        {
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.Write("Downloaded:\t");
+            Console.ResetColor();
+            WriteMessageInCyan(nameOfDownloadMessage);
+        }
+
         public static void WriteMessageInYellow(string message)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
