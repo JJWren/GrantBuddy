@@ -5,7 +5,12 @@
     <TargetFramework>net8.0</TargetFramework>
     <RootNamespace>EPA_Grant_Scraper</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
+    <Authors>$(AssemblyName)</Authors>
+    <Title></Title>
+    <Product>$(AssemblyName)</Product>
+    <Description></Description>
+    <AssemblyName>$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
